@@ -21,8 +21,7 @@ title_search = re.compile(r'''
 (title:\s*)         #title, with optional whitespace after
 (?P<title>          #group name
 .*                  #first line of title can have anything
-(
-\n.*\w.*)*          #subsequent lines have at least one alphanumeric character.  
+(\n.*\w.*)*         #subsequent lines have at least one alphanumeric character.  
                     #we can have arbitrarily many lines in the title
 )
 ''', re.IGNORECASE + re.VERBOSE)
