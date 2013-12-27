@@ -24,7 +24,7 @@ title_search = re.compile(r'''
 (\n.*\w.*)*         #subsequent lines have at least one alphanumeric character.  
                     #we can have arbitrarily many lines in the title
 )
-''', re.IGNORECASE + re.VERBOSE)
+''', re.IGNORECASE|re.VERBOSE)
 author_search = re.compile(r'(author:)(?P<author>.*)', re.IGNORECASE)
 translator_search = re.compile(r'(translator:)(?P<translator>.*)', re.IGNORECASE)
 illustrator_search = re.compile(r'(illustrator:)(?P<illustrator>.*)', re.IGNORECASE)
