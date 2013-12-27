@@ -16,7 +16,9 @@ documents = [DIV_COMM, MAG_CART]
 # argument to re.compile. We're doing this because it's human beings who create
 # the metadata headers at the top of Project gutenberg docs, and we want to account 
 # for possibility of "title: Some Title", "Title: Some Title", and "TITLE: Some Title").
-title_search = re.compile(r'(title:\s*)(?P<title>.*)', re.IGNORECASE)
+#title_search = re.compile(r'(title:\s*)(?P<title>.*)', re.IGNORECASE)
+title_search = re.compile(r'(title:\s*)(?P<title>.*(\n.*\w.*)*)', re.IGNORECASE 
+                                                                + re.MULTILINE)
 author_search = re.compile(r'(author:)(?P<author>.*)', re.IGNORECASE)
 translator_search = re.compile(r'(translator:)(?P<translator>.*)', re.IGNORECASE)
 illustrator_search = re.compile(r'(illustrator:)(?P<illustrator>.*)', re.IGNORECASE)
