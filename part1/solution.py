@@ -1,3 +1,4 @@
+import pdb
 import re
 import sys
 from pg_sample_texts import DIV_COMM, MAG_CART
@@ -41,11 +42,24 @@ for i,doc in enumerate(docs):
     print "\n"
     
     #keyword info
+    
+    #get the part of the text between start and end
+    content_pattern = re.compile(r'''
+                                 ([*][*][*]\ START.*?[*][*][*]) #start of text
+                                 (.*)                           #body of text
+                                 ([*][*][*]\ END.*?[*][*][*])   #end of text
+                                 ''', re.IGNORECASE|re.DOTALL|re.VERBOSE)
+    content_body = content_pattern.search(doc).group(2)
+    
+
+    
     print 'Here are the counts for your keywords:'
     for keyword in keywords:
-        pattern = re.compile(r'\b' + keyword + r'\b', re.IGNORECASE)
-        num_matches = len(pattern.findall(doc))
-        print '"{}" : {}'.format(keyword, num_matches)
     
-    
+        #pattern for searching the actual body
+        keyword_pattern = re.compile(r'\b{}\b'.format(keyword),re.IGNORECASE)
+        matches = keyword_pattern.findall(doc)
+        num_matches = len(matches)
+        print '"{}" : {}'.format(keyword,num_matches)
+
 
