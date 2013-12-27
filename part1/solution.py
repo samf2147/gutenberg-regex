@@ -58,7 +58,7 @@ for i,doc in enumerate(docs):
     
         #pattern for searching the actual body
         keyword_pattern = re.compile(r'\b{}\b'.format(keyword),re.IGNORECASE)
-        matches = keyword_pattern.findall(doc)
+        matches = keyword_pattern.findall(content_body)
         num_matches = len(matches)
         print '"{}" : {}'.format(keyword,num_matches)
 
