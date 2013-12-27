@@ -17,7 +17,13 @@ documents = [DIV_COMM, MAG_CART]
 # the metadata headers at the top of Project gutenberg docs, and we want to account 
 # for possibility of "title: Some Title", "Title: Some Title", and "TITLE: Some Title").
 #title_search = re.compile(r'(title:\s*)(?P<title>.*)', re.IGNORECASE)
-title_search = re.compile(r'(title:\s*)(?P<title>.*(\n.*\w.*)*)', re.IGNORECASE)
+title_search = re.compile(r'''
+(title:\s*)         #title, with optional whitespace after
+(?P<title>          #group name
+.*                  #first line of title can have anything
+(\n.*\w.*)*)        #subsequent lines have at least one alphanumeric character.  
+                    #we can have arbitrarily many lines in the title
+''', re.IGNORECASE + re.VERBOSE)
 author_search = re.compile(r'(author:)(?P<author>.*)', re.IGNORECASE)
 translator_search = re.compile(r'(translator:)(?P<translator>.*)', re.IGNORECASE)
 illustrator_search = re.compile(r'(illustrator:)(?P<illustrator>.*)', re.IGNORECASE)
